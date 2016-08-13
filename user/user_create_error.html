@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>フォームを用いたメッセージの送信</title>
+
+<!--
+ ページ内にcssを記述 
+-->
+<style type="text/css">
+   h1{color:#101010}
+   .red{color:#ff0000;}
+   .green{color:#00ff00;}
+   .blue{color:#0000ff;}
+
+  /*ボタン*/
+  .button{
+    display: block;
+    font-size: 24px;
+    font-family: "Tenderness";
+    text-transform: uppercase;
+    border:1px solid #777;
+    padding: .5em 2em .55em;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, .4);
+    background: #428ec9;
+    -webkit-border-radius: 5px;
+    -moz-border-radius:  5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #fff;
+    -webkit-box-shadow: 0 1px 1px #fff;
+    box-shadow: 0 1px 1px #fff;
+    background: -webkit-gradient( linear, left top, left bottom, from(#ffd1e8), to(#ff69b4));
+    background: -moz-linear-gradient( top, #ffd1e8, #ff69b4);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd1e8', endColorstr='#ff69b4');
+  }
+  .minw200{
+    display: inline-block;
+    min-width: 200px;
+  }
+
+  /* テキスト */
+  .text {
+    width: 150px;
+    height: 30px;
+    background-color: #fffaf0;
+    border: solid 2px #ffe4c4;
+  }
+  /* 戻る */
+  .return {
+    float: right;
+  }
+
+</style>
+
+
+<!--
+  JavaScriptのソース
+-->
+<script type="text/javascript">
+  // jsロード後に実行される処理
+  (function(){
+    
+  })();
+
+  // DOMロード後に実行される処理
+  // ウェブ上のあらゆるオブジェクトの読み込みがすべて完了した後で処理をする方法
+  window.onload = function() {
+  	// document.write("html is loaded complete!!")
+  }
+</script>
+
+</head>
+
+<body> 
+<!-- ここにhtmlの本体を記述する -->
+<h1>新規登録</h1>
+
+<!-- 送信ボタンを押すと form_api.php に GETメッセージが送られる -->
+<form action="create.php"
+      method="get" enctype="multipart/form-data">
+  <span class="minw200">ユーザー名：</span><input type="text" class="text" name="username" placeholder="username"/><br>
+  <span class="minw200">パスワード：</span><input type="password" class="text" name="password" placeholder="password" /><br>
+
+  <input class="button" type="submit">
+</form>
+
+<a class="return" href="user_top.html">戻る</a>
+
+
+</body>
+</html>

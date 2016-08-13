@@ -1,0 +1,68 @@
+<?php
+    session_start();
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>セッションのテスト</title>
+
+<!--
+ ページ内にcssを記述 
+-->
+<style type="text/css">
+   h1{color:#101010}
+   .red{color:#ff0000;}
+   .green{color:#00ff00;}
+   .blue{color:#0000ff;}
+</style>
+
+
+<!--
+  JavaScriptのソース
+-->
+<script type="text/javascript">
+  // jsロード後に実行される処理
+  (function(){
+  })();
+
+  // DOMロード後に実行される処理
+  // ウェブ上のあらゆるオブジェクトの読み込みがすべて完了した後で処理をする方法
+  window.onload = function() {
+    // document.write("html is loaded complete!!")
+  }
+</script>
+
+</head>
+
+<body> 
+<!-- ここにhtmlの本体を記述する -->
+<h1>セッションのテスト</h1>
+
+<?php
+
+    if (!isset($_COOKIE["PHPSESSID"])){
+        print('初回の訪問です。セッションを開始します。');
+        session_regenerate_id(true);  // セッションIDをログインの度に再生成
+
+    }else{
+        print('セッションは開始しています。<br>');
+        print('セッションIDは '.$_COOKIE["PHPSESSID"].' です。');
+        
+        // セッション変数
+        if (!isset($_SESSION['count'])) {
+          $_SESSION['count'] = 0;
+        } else {
+          $_SESSION['count']++;
+        }
+        echo "<br>" . $_SESSION['count'] . "<br>";
+    }
+?>
+<br>
+<a href="var.html">セッション情報の参照</a><br>
+<a href="end.html">セッションの終了</a><br>
+
+</body>
+</html>

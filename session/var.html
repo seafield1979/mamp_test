@@ -1,0 +1,52 @@
+<?php
+    session_start();
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>セッションの状態を参照する</title>
+
+<!--
+ ページ内にcssを記述 
+-->
+<style type="text/css">
+   h1{color:#101010}
+   .red{color:#ff0000;}
+   .green{color:#00ff00;}
+   .blue{color:#0000ff;}
+</style>
+
+</head>
+
+<body> 
+
+<h1>セッション情報の参照</h1>
+
+<?php  
+  if (isset($_COOKIE["PHPSESSID"])) {
+    echo "セッションID ${_COOKIE["PHPSESSID"]}<br>";
+
+    // セッション変数のセット  
+    if (!isset($_SESSION["sdata1"])) {
+      $_SESSION["sdata1"] = "hoge";
+    }
+    if (!isset($_SESSION["sdata2"])) {
+      $_SESSION["sdata2"] = "123";
+    }
+
+    // セッション情報
+    echo "セッション情報<br>";
+    foreach ($_SESSION as $key=>$value){
+      echo "key=${key} value=${value}<br>";
+    }
+  }
+?>
+<br>
+<a href="start.html">セッションの開始</a><br>
+<a href="end.html">セッションの終了</a><br>
+
+</body>
+</html>

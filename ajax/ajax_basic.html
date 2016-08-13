@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>jQuery template</title>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="../jquery-3.1.0.min.js"></script>
+
+<style type="text/css">
+	body { background-color: #ffffff; }
+	.button{
+	    display: block;
+	    font-size: 24px;
+	    font-family: "Tenderness";
+	    text-transform: uppercase;
+	    border:1px solid #777;
+	    padding: .5em 2em .55em;
+	    color: #fff;
+	    cursor: pointer;
+	    text-align: center;
+	    text-shadow: 0 -1px 1px rgba(0, 0, 0, .4);
+	    background: #428ec9;
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius:  5px;
+	    border-radius: 5px;
+	    -moz-box-shadow: 0 1px 1px #fff;
+	    -webkit-box-shadow: 0 1px 1px #fff;
+	    box-shadow: 0 1px 1px #fff;
+	    background: -webkit-gradient( linear, left top, left bottom, from(#ffd1e8), to(#ff69b4));
+	    background: -moz-linear-gradient( top, #ffd1e8, #ff69b4);
+	    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd1e8', endColorstr='#ff69b4');
+    }
+</style>
+</head>
+
+
+
+
+
+
+
+<body>
+<script type="text/javascript">
+<!--
+	function ajax1(number){
+		var data = {
+			param1:number,
+			param2:2};
+		$.ajax({
+			/* Ajax通信メソッド
+             * @param type  : HTTP通信の種類
+             * @param url   : リクエスト送信先のURL
+             * @param data  : サーバに送信する値
+             */
+			type: "POST",
+			//dataType: "json",
+			data: data,
+			url: "test1.php",
+			success: function(result,dataType){
+				// 成功時の処理
+				$(".aaa .result").text(result);
+				console.log(result);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				// エラー処理
+				alert(errorThrown);
+				console.log(errorThrown);
+			},
+			complete: function () {
+				// ajax完了時に成功、失敗問わず呼ばれる
+			}
+		});
+	}
+
+	(function(){
+	})();
+	
+	window.onload = function(){
+		$(".button.ajax_test1").bind("click", function(){
+			ajax1(1);
+		});
+		$(".button.ajax_test2").bind("click", function(){
+			ajax1(2);
+		});
+	}	
+	
+-->
+</script>
+
+
+<div class="aaa">
+	<input class="button ajax_test1" type="button" value="ajaxテスト1" />
+	<input class="button ajax_test2" type="button" value="ajaxテスト2" />
+	<p class="result">ajaxの結果</p>
+</div>
+</div>
+<div id="output"></div>
+</body>
+</html>

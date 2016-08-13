@@ -1,0 +1,53 @@
+<?php
+    session_start();
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>セッションの終了</title>
+
+<!--
+ ページ内にcssを記述 
+-->
+<style type="text/css">
+   h1{color:#101010}
+   .red{color:#ff0000;}
+   .green{color:#00ff00;}
+   .blue{color:#0000ff;}
+</style>
+
+</head>
+
+<body> 
+<!-- ここにhtmlの本体を記述する -->
+<h1>セッションの終了</h1>
+
+<?php
+
+// セッション変数を全て解除する
+$_SESSION = array();
+
+// セッションを切断するにはセッションクッキーも削除する。
+// Note: セッション情報だけでなくセッションを破壊する。
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// 最終的に、セッションを破壊する
+session_destroy();
+session_regenerate_id(true);
+?>
+
+セッションを終了しました。
+<br>
+<a href="start.html">セッション開始</a><br>
+
+</body>
+</html>

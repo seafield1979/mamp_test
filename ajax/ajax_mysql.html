@@ -1,0 +1,193 @@
+<html>
+<head>
+<title>Ajax経由でMySQLを使用する</title>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="../jquery-3.1.0.min.js"></script>
+
+<style type="text/css">
+	body { background-color: #ffffff; }
+	.button{
+	    display: block;
+	    margin-bottom: 10px;
+	    font-size: 24px;
+	    font-family: "Tenderness";
+	    text-transform: uppercase;
+	    border:1px solid #777;
+	    padding: .5em 2em .55em;
+	    color: #fff;
+	    cursor: pointer;
+	    text-align: center;
+	    text-shadow: 0 -1px 1px rgba(0, 0, 0, .4);
+	    background: #428ec9;
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius:  5px;
+	    border-radius: 5px;
+	    -moz-box-shadow: 0 1px 1px #fff;
+	    -webkit-box-shadow: 0 1px 1px #fff;
+	    box-shadow: 0 1px 1px #fff;
+	    background: -webkit-gradient( linear, left top, left bottom, from(#ffd1e8), to(#ff69b4));
+	    background: -moz-linear-gradient( top, #ffd1e8, #ff69b4);
+	    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd1e8', endColorstr='#ff69b4');
+    }
+</style>
+</head>
+
+
+
+
+
+
+
+<body>
+<script type="text/javascript">
+<!--
+	// レコードを追加
+	function ajax_add_record(name){
+		var data = {
+			name:name
+		};
+		$.ajax({
+			/* Ajax通信メソッド
+             * @param type  : HTTP通信の種類
+             * @param url   : リクエスト送信先のURL
+             * @param data  : サーバに送信する値
+             */
+			type: "POST",
+			data: data,
+			url: "add_record.php",
+			success: function(result,dataType){
+				// 成功時の処理
+				$(".ajax .result").text(result);
+				console.log(result);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				// エラー処理
+				alert(errorThrown);
+				console.log(errorThrown);
+			},
+			complete: function () {
+				// ajax完了時に成功、失敗問わず呼ばれる
+			}
+		});
+	}
+
+	// レコードを全件表示
+	function ajax_show_records(){
+		var data = {
+		};
+		$.ajax({
+			/* Ajax通信メソッド
+             * @param type  : HTTP通信の種類
+             * @param url   : リクエスト送信先のURL
+             * @param data  : サーバに送信する値
+             */
+			type: "POST",
+			data: data,
+			url: "show_record.php",
+			success: function(result,dataType){
+				// 成功時の処理
+				$(".ajax .records").html(result);
+				console.log(result);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				// エラー処理
+				alert(errorThrown);
+				console.log(errorThrown);
+			},
+			complete: function () {
+				// ajax完了時に成功、失敗問わず呼ばれる
+			}
+		});
+	}
+
+	// レコードを1件削除
+	function ajax_remove_record(){
+		var data = {
+		};
+		$.ajax({
+			/* Ajax通信メソッド
+             * @param type  : HTTP通信の種類
+             * @param url   : リクエスト送信先のURL
+             * @param data  : サーバに送信する値
+             */
+			type: "POST",
+			data: data,
+			url: "remove_record.php",
+			success: function(result,dataType){
+				// 成功時の処理
+				$(".ajax .records").text(result);
+				console.log(result);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				// エラー処理
+				alert(errorThrown);
+				console.log(errorThrown);
+			},
+			complete: function () {
+				// ajax完了時に成功、失敗問わず呼ばれる
+			}
+		});
+	}
+	
+	// レコードを1件更新
+	function ajax_update_record(){
+		var data = {
+		};
+		$.ajax({
+			/* Ajax通信メソッド
+             * @param type  : HTTP通信の種類
+             * @param url   : リクエスト送信先のURL
+             * @param data  : サーバに送信する値
+             */
+			type: "POST",
+			data: data,
+			url: "update_record.php",
+			success: function(result,dataType){
+				// 成功時の処理
+				$(".ajax .records").text(result);
+				console.log(result);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				// エラー処理
+				alert(errorThrown);
+				console.log(errorThrown);
+			},
+			complete: function () {
+				// ajax完了時に成功、失敗問わず呼ばれる
+			}
+		});
+	}
+
+	(function(){
+	})();
+	
+	window.onload = function(){
+		$(".button.add_record").bind("click", function(){
+			ajax_add_record();
+		});
+		$(".button.show_records").bind("click", function(){
+			ajax_show_records();
+		});
+		$(".button.remove_record").bind("click", function(){
+			ajax_remove_record();
+		});
+		$(".button.update_record").bind("click", function(){
+			ajax_update_record();
+		});
+	}
+-->
+</script>
+
+<h2>Ajax経由でMySQLの機能をテスト</h2>
+<div class="ajax">
+	<input class="button show_records" type="button" value="レコード表示" />
+	<input class="button add_record" type="button" value="レコード追加" />
+	<input class="button remove_record" type="button" value="レコード削除(1件)" />
+	<input class="button update_record" type="button" value="レコード更新(1件)" />
+	<p class="result">ajaxの結果</p>
+	<p class="records"></p>
+</div>
+</div>
+<div id="output"></div>
+</body>
+</html>

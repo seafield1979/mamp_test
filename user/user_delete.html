@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>削除確認</title>
+
+<!-- 外部cssファイルをロード -->
+<link href="user.css" rel="stylesheet" type="text/css" />
+
+<!-- ページ内にcssを記述 -->
+<style type="text/css">
+  table{
+    text-align: center;
+  }
+</style>
+
+
+<!--
+  JavaScriptのソース
+-->
+<script type="text/javascript">
+  // jsロード後に実行される処理
+  (function(){
+    
+  })();
+
+  // DOMロード後に実行される処理
+  // ウェブ上のあらゆるオブジェクトの読み込みがすべて完了した後で処理をする方法
+  window.onload = function() {
+  	// document.write("html is loaded complete!!")
+  }
+</script>
+
+</head>
+
+<?php
+  // Cookieからログイン中のユーザー名を取得
+  $username = $_COOKIE["username"];
+
+  // ログイン可能かチェック
+  // ユーザー名＆パスワードでユーザーを探す
+  // mysqliクラスのオブジェクトを作成
+  $host = "localhost";
+  $user = "root";
+  $pass = "root";
+  $db = "user_test";
+  $mysqli = new mysqli($host,$user,$pass,$db);
+  if ($mysqli->connect_error) {
+      echo $mysqli->connect_error;
+      exit();
+  } else {
+      $mysqli->set_charset("utf8");
+  }
+
+  // 完成済みのSELECT文を実行する
+  $sql = "SELECT * FROM users WHERE user_name=\"${username}\"";
+  if ($result = $mysqli->query($sql)) {
+      while($row = $result->fetch_assoc()){
+        $userdata = $row;
+      }
+
+      // 結果セットを閉じる
+      $result->close();
+  }
+
+  // DB接続を閉じる
+  $mysqli->close();  
+
+?>
+
+
+<body> 
+<!-- ここにhtmlの本体を記述する -->
+<h1>削除確認</h1>
+
+<table>
+  <tr>
+    <td>ユーザー名</td>
+    <td>パスワード</td>
+    <td>コメント</td>
+  </tr>
+  <tr>
+    <td> <?php
+     echo $userdata["user_name"]; 
+     ?></td>
+    <td> <?php
+     echo $userdata["password"];
+     ?></td>
+    <td> <?php
+     echo $userdata["comment"];
+     ?></td>
+
+  </tr>  
+</table>
+
+<p>削除してもよろしいですか？</p>
+
+<a href="delete.php" class="button">OK</a>
+<a href="user_home.html" class="button">ダメ(ホームに戻る)</a>
+
+
+</body>
+</html>

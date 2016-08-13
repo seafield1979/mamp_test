@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>フォームを用いたメッセージの送信</title>
+
+<!-- 外部cssファイルをロード -->
+<link href="user.css" rel="stylesheet" type="text/css" />
+
+<!--
+ ページ内にcssを記述 
+-->
+<style type="text/css">
+  form {
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+</style>
+
+
+<!--
+  JavaScriptのソース
+-->
+<script type="text/javascript">
+  // jsロード後に実行される処理
+  (function(){
+    
+  })();
+
+  // DOMロード後に実行される処理
+  // ウェブ上のあらゆるオブジェクトの読み込みがすべて完了した後で処理をする方法
+  window.onload = function() {
+  	// document.write("html is loaded complete!!")
+  }
+</script>
+
+</head>
+
+<body> 
+
+<!-- 送信ボタンを押すと form_api.php に GETメッセージが送られる -->
+<h2>ログイン</h2>
+<form action="login.php"
+      method="get" enctype="multipart/form-data">
+  
+  <span class="minw100">ユーザー名：</span>
+  <input type="text" class="text" name="username"  placeholder="user name"/><br>
+  
+  <span class="minw100">パスワード：</span>
+  <input type="password" class="text" name="password"  placeholder="password"/><br>
+  
+  <input class="button" type="submit">
+</form>
+
+<a href="user_create.html" class="button">新規登録</a>
+
+
+
+</body>
+</html>

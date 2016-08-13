@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>フォームを用いたメッセージの送信</title>
+
+<!-- 外部css -->
+<link href="user.css" rel="stylesheet" type="text/css" />
+<!-- ページ内にcssを記述 -->
+<style type="text/css">
+  form [type="text"]{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+</style>
+
+<!--
+  JavaScriptのソース
+-->
+<script type="text/javascript">
+  // jsロード後に実行される処理
+  (function(){
+    
+  })();
+
+  // DOMロード後に実行される処理
+  // ウェブ上のあらゆるオブジェクトの読み込みがすべて完了した後で処理をする方法
+  window.onload = function() {
+  	// document.write("html is loaded complete!!")
+  }
+</script>
+
+</head>
+
+<body> 
+<?php
+  // Cookieからログイン中のユーザー名を取得
+  $username = $_COOKIE["username"];
+
+  // ログイン可能かチェック
+  // ユーザー名＆パスワードでユーザーを探す
+  // mysqliクラスのオブジェクトを作成
+  $host = "localhost";
+  $user = "root";
+  $pass = "root";
+  $db = "user_test";
+  $mysqli = new mysqli($host,$user,$pass,$db);
+  if ($mysqli->connect_error) {
+      echo $mysqli->connect_error;
+      exit();
+  } else {
+      $mysqli->set_charset("utf8");
+  }
+
+  // 完成済みのSELECT文を実行する
+  $sql = "SELECT * FROM users WHERE user_name=\"${username}\"";
+  if ($result = $mysqli->query($sql)) {
+      while($row = $result->fetch_assoc()){
+        $userdata = $row;
+      }
+
+      // 結果セットを閉じる
+      $result->close();
+  }
+
+  // DB接続を閉じる
+  $mysqli->close();  
+
+?>
+
+<!-- ここにhtmlの本体を記述する -->
+<h1>ユーザー情報更新</h1>
+
+<div class="username">
+  <span class="minw100">ユーザー名</span>
+  <span class="minw100 username">
+    <?php 
+      echo $userdata["user_name"];
+    ?>
+  </span>
+</div>
+<!-- 送信ボタンを押すと form_api.php に GETメッセージが送られる -->
+<form action="edit.php"
+      method="get" enctype="multipart/form-data">
+  <span class="minw100">コメント</span>
+  <input type="text" class="text" name="comment" value=""/><br>
+  <input class="button" type="submit">
+</form>
+<a class="button" href="user_home.html">ホームに戻る</a>
+
+</body>
+</html>

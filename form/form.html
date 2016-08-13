@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>フォームを用いたメッセージの送信</title>
+
+<!--
+ ページ内にcssを記述 
+-->
+<style type="text/css">
+   h1{color:#101010}
+   .red{color:#ff0000;}
+   .green{color:#00ff00;}
+   .blue{color:#0000ff;}
+
+  /*ボタン*/
+  .button{
+    display: block;
+    font-size: 24px;
+    font-family: "Tenderness";
+    text-transform: uppercase;
+    border:1px solid #777;
+    padding: .5em 2em .55em;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, .4);
+    background: #428ec9;
+    -webkit-border-radius: 5px;
+    -moz-border-radius:  5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #fff;
+    -webkit-box-shadow: 0 1px 1px #fff;
+    box-shadow: 0 1px 1px #fff;
+    background: -webkit-gradient( linear, left top, left bottom, from(#ffd1e8), to(#ff69b4));
+    background: -moz-linear-gradient( top, #ffd1e8, #ff69b4);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd1e8', endColorstr='#ff69b4');
+  }
+  .minw100{
+    display: inline-block;
+    min-width: 100px;
+  }
+
+  /* テキスト */
+  .text {
+    width: 100px;
+    height: 30px;
+    background-color: #fffaf0;
+    border: solid 2px #ffe4c4;
+  }
+
+</style>
+
+
+<!--
+  JavaScriptのソース
+-->
+<script type="text/javascript">
+  // jsロード後に実行される処理
+  (function(){
+    
+  })();
+
+  // DOMロード後に実行される処理
+  // ウェブ上のあらゆるオブジェクトの読み込みがすべて完了した後で処理をする方法
+  window.onload = function() {
+  	// document.write("html is loaded complete!!")
+  }
+</script>
+
+</head>
+
+<body> 
+<!-- ここにhtmlの本体を記述する -->
+<h1>フォームのメッセージ送信</h1>
+
+<!-- 送信ボタンを押すと form_api.php に GETメッセージが送られる -->
+<h2>GETメッセージ送信</h2>
+<form action="form_api.php"
+      method="get" enctype="multipart/form-data">
+  <span class="minw100">氏名：</span><input type="text" class="text" name="username" /><br>
+  <span class="minw100">生年月日：</span><input type="text" class="text" name="birthday" /><br>
+  <input class="button" type="submit">
+</form>
+
+<h2>POSTメッセージ送信</h2>
+<form action="post.php"
+      method="post" enctype="multipart/form-data">
+  <span class="minw100">氏名：</span><input type="text" class="text" name="username" /><br>
+  <span class="minw100">生年月日：</span><input type="text" class="text" name="birthday" /><br>
+  <input class="button" type="submit">
+</form>
+
+
+</body>
+</html>

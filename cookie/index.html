@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Cookieのテスト</title>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="../jquery-3.1.0.min.js"></script>
+
+<style type="text/css">
+  body { background-color: #ffffff; }
+  .button{
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-family: "Tenderness";
+      text-transform: uppercase;
+      border:1px solid #777;
+      padding: .5em 2em .55em;
+      color: #fff;
+      cursor: pointer;
+      text-align: center;
+      text-shadow: 0 -1px 1px rgba(0, 0, 0, .4);
+      background: #428ec9;
+      -webkit-border-radius: 5px;
+      -moz-border-radius:  5px;
+      border-radius: 5px;
+      -moz-box-shadow: 0 1px 1px #fff;
+      -webkit-box-shadow: 0 1px 1px #fff;
+      box-shadow: 0 1px 1px #fff;
+      background: -webkit-gradient( linear, left top, left bottom, from(#ffd1e8), to(#ff69b4));
+      background: -moz-linear-gradient( top, #ffd1e8, #ff69b4);
+      filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd1e8', endColorstr='#ff69b4');
+    }
+</style>
+</head>
+
+
+
+
+
+
+
+<body>
+<script type="text/javascript">
+<!--
+  function ajax1(number){
+    var data = {
+      test_no:number};
+    $.ajax({
+      /* Ajax通信メソッド
+             * @param type  : HTTP通信の種類
+             * @param url   : リクエスト送信先のURL
+             * @param data  : サーバに送信する値
+             */
+      type: "POST",
+      //dataType: "json",
+      data: data,
+      url: "cookie.php",
+      success: function(result,dataType){
+        // 成功時の処理
+        $(".aaa .result").html(result);
+        console.log(result);
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown){
+        // エラー処理
+        alert(errorThrown);
+        console.log(errorThrown);
+      },
+      complete: function () {
+        // ajax完了時に成功、失敗問わず呼ばれる
+      }
+    });
+  }
+
+  (function(){
+  })();
+  
+  window.onload = function(){
+    $(".button.cookie_show").bind("click", function(){
+      ajax1(1);
+    });
+    $(".button.cookie_add").bind("click", function(){
+      ajax1(2);
+    });
+    $(".button.cookie_delete").bind("click", function(){
+      ajax1(3);
+    });
+  } 
+  
+-->
+</script>
+
+
+<div class="aaa">
+  <input class="button cookie_show" type="button" value="Cookieを表示" />
+  <input class="button cookie_add" type="button" value="Cookieを追加" />
+  <input class="button cookie_delete" type="button" value="Cookieを削除" />
+  <p>テスト結果</p>
+  <p class="result"></p>
+</div>
+</div>
+<div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<title>PHPからMySQLに接続</title>
+
+<!--
+ ページ内にcssを記述 
+-->
+<style type="text/css">
+   h1{color:#101010}
+   .red{color:#ff0000;}
+   .green{color:#00ff00;}
+   .blue{color:#0000ff;}
+
+  table{
+    border: solid 1px;
+  }
+  td{
+    background-color: #aaa;
+    padding: 2px;
+  }
+
+</style>
+
+
+<!--
+  JavaScriptのソース
+-->
+<script type="text/javascript">
+  // jsロード後に実行される処理
+  (function(){
+    document.write("js is loaded!!<br>");
+  })();
+
+</script>
+
+</head>
+
+<body> 
+<!-- ここにhtmlの本体を記述する -->
+<h1>PHPからMySQLに接続する</h1>
+
+<h2>DB情報</h2>
+<table>
+  <tr>
+    <td>ホスト</td>
+    <td>localhost</td>
+  </tr>
+  <tr>
+    <td>ユーザー</td>
+    <td>root</td>
+  </tr>
+  <tr>
+    <td>データベース</td>
+    <td>test</td>
+  </tr>
+</table>
+
+
+<h2>レコード</h2>
+
+<?php
+  // mysqliクラスのオブジェクトを作成
+  $mysqli = new mysqli('localhost', 'root', 'poco1979', 'test');
+  if ($mysqli->connect_error) {
+      echo $mysqli->connect_error;
+      exit();
+  } else {
+      $mysqli->set_charset("utf8");
+  }
+
+  // 完成済みのSELECT文を実行する
+  $sql = "SELECT id, name FROM users";
+  if ($result = $mysqli->query($sql)) {
+      // 連想配列を取得
+      while ($row = $result->fetch_assoc()) {
+          echo $row["id"] . ":" . $row["name"] . "<br>";
+      }
+      // 結果セットを閉じる
+      $result->close();
+  }
+
+  // DB接続を閉じる
+  $mysqli->close();
+?>
+
+</body>
+</html>
